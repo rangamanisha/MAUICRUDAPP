@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="crudapp.MainPage">
+
+    <VerticalStackLayout Spacing="25" Padding="30">
+        <!-- Input field for the student's name -->
+        <Entry x:Name="nameEntry" Placeholder="Enter student's name" />
+        <!-- Input field for the student's age -->
+        <Entry x:Name="ageEntry" Placeholder="Enter student's age" Keyboard="Numeric"/>
+        <!-- Button to trigger adding a new student -->
+        <Button Text="Add Student" Clicked="OnAddStudentClicked"/>
+
+        <!-- Collection view to display the list of students -->
+        <CollectionView x:Name="studentsCollectionView">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <!-- Swipe view for edit and delete actions -->
+                    <SwipeView>
+                        <SwipeView.LeftItems>
+                            <!-- Swipe item for editing a student -->
+                            <SwipeItem Text="Edit" BackgroundColor="Orange" Invoked="OnEditStudentInvoked"/>
+                            <!-- Swipe item for deleting a student -->
+                            <SwipeItem Text="Delete" BackgroundColor="Red" Invoked="OnDeleteStudentInvoked"/>
+                        </SwipeView.LeftItems>
+                        <StackLayout Orientation="Horizontal" Padding="10">
+                            <!-- Display the student's name -->
+                            <Label Text="{Binding Name}" HorizontalOptions="StartAndExpand"/>
+                            <!-- Display the student's age -->
+                            <Label Text="{Binding Age}" HorizontalOptions="End"/>
+                        </StackLayout>
+                    </SwipeView>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </VerticalStackLayout>
+
+</ContentPage>
